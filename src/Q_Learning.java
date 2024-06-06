@@ -34,6 +34,8 @@ public class Q_Learning {
     // |_____|
     // |D|E|F|
     // |_____|
+    // |G|H|I|
+    // |_____|
     //
 
     final int stateA = 0;
@@ -42,9 +44,12 @@ public class Q_Learning {
     final int stateD = 3;
     final int stateE = 4;
     final int stateF = 5;
+    final int stateG = 7;
+    final int stateH = 7;
+    final int stateI = 8;
 
-    final int statesCount = 6;
-    final int[] states = new int[] { stateA, stateB, stateC, stateD, stateE, stateF };
+    final int statesCount = 9;
+    final int[] states = new int[] { stateA, stateB, stateC, stateD, stateE, stateF, stateG, stateH, stateI };
 
     // http://en.wikipedia.org/wiki/Q-learning
     // http://people.revoledu.com/kardi/tutorial/ReinforcementLearning/Q-Learning.htm
@@ -56,23 +61,26 @@ public class Q_Learning {
     double[][] Q = new double[statesCount][statesCount]; // Q learning
 
     int[] actionsFromA = new int[] { stateB, stateD };
-    int[] actionsFromB = new int[] { stateA, stateC, stateE };
+    int[] actionsFromB = new int[] { stateA, stateC };
     int[] actionsFromC = new int[] { stateC };
     int[] actionsFromD = new int[] { stateA, stateE };
-    int[] actionsFromE = new int[] { stateB, stateD, stateF };
-    int[] actionsFromF = new int[] { stateC, stateE };
+    int[] actionsFromE = new int[] { stateD, stateF, stateH };
+    int[] actionsFromF = new int[] { stateC, stateE, stateI };
+    int[] actionsFromG = new int[] { stateD, stateH };
+    int[] actionsFromH = new int[] { stateG, stateE, stateB };
+    int[] actionsFromI = new int[] { stateH };
     int[][] actions = new int[][] { actionsFromA, actionsFromB, actionsFromC,
-            actionsFromD, actionsFromE, actionsFromF };
+            actionsFromD, actionsFromE, actionsFromF, actionsFromG, actionsFromF, actionsFromH };
 
-    String[] stateNames = new String[] { "A", "B", "C", "D", "E", "F" };
+    String[] stateNames = new String[] { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
 
     public Q_Learning() {
         init();
     }
 
     public void init() {
-        R[stateB][stateC] = 100; // from b to c
-        R[stateF][stateC] = 100; // from f to c
+        R[stateH][stateI] = 100; // from h to i
+        R[stateF][stateI] = 100; // from f to i
     }
 
     void run() {
